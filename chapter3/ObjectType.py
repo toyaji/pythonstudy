@@ -17,7 +17,10 @@ if type(s) is list:
 if isinstance(s, list):  # 타입 비교하기엔 isinstance 가 효율적임
     s.append(4)
 
-if isinstance(t, dict):
+if isinstance(t, d):
     t.update({5:5})  # update 함수안에는 똑같이 딕셔너리 들어가야함.
 
 print(s, t)
+
+
+# 파이참에서 Ctrl + d 하면 선택블록 복제함.
