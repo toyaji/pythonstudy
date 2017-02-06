@@ -1,6 +1,6 @@
 # 명령줄에서 python -m cProfile someprogram.py 로 볼 수 있음
 
-from Datacamp.RDBMS import SQLAlchemyQuery
+from Datacamp.RDBMS import SQLAlchemyTable
 import profile
 
 
