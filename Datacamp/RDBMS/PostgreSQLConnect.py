@@ -20,7 +20,15 @@ print(engine.table_names())
 
 import psycopg2 as pg2
 
-# conn = pg2.connect(database="postgres", user="paul", password="1234", host="127.0.0.1", port="5432")
-# conn = pg2.connect("host = localhost dbname=postgres user=paul password=1234 port=5432")
-# 같은 결과
-# jdbc:postgresql://localhost:5432/postgres
+try :
+    # conn = pg2.connect(database="postgres", user="paul", password="1234", host="127.0.0.1", port="5432")
+    conn = pg2.connect("host = localhost dbname=postgres user=postgres password=happygk2 port=5432")
+    # 같은 결과
+    # jdbc:postgresql://localhost:5432/postgres
+    cur = conn.cursor()
+    cur.execute("SELECT version()")
+    ver = cur.fetchone()
+    print(ver)
+
+finally:
+    if conn: conn.close()
