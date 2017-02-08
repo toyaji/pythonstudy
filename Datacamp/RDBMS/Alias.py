@@ -1,4 +1,5 @@
 from sqlalchemy import *
+import pandas as pd
 
 engine = create_engine(r"sqlite:///C:\Users\Paul\Downloads\Chinook_Sqlite.sqlite")
 
