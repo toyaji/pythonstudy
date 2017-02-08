@@ -5,9 +5,9 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5433/postgres</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="db1@localhost" uuid="a7442741-6554-489f-ae45-8f1dd7245b12">
+    <data-source source="LOCAL" name="db1@localhost [mySQL Study]" uuid="a7442741-6554-489f-ae45-8f1dd7245b12">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
