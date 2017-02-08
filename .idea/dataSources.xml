@@ -7,7 +7,21 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/postgres</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="db1@localhost [mySQL Study]" uuid="a7442741-6554-489f-ae45-8f1dd7245b12">
+    <data-source source="LOCAL" name="db1@localhost [mySQL Study 1-100]" uuid="a7442741-6554-489f-ae45-8f1dd7245b12">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/db1</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="db1@localhost [mySQL Study 101-200]" uuid="5f53df0f-d084-4a0b-b95c-b68c09b5d8e1">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
