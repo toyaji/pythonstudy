@@ -81,7 +81,7 @@ a = iter(l)
 for i in a:
     print(i)
 
-# 첫번째 인자값인 fuction 에 두번째 인자값 대입해서 결과 값 리스트로 반환 - 그러나 생성기 표현식이 속도 더 좋음
+# 첫번째 인자값인 function 에 두번째 인자값 대입해서 결과 값 리스트로 반환 - 그러나 생성기 표현식이 속도 더 좋음
 a = map(hex, l)
 b = [hex(x) for x in l]
 print(a.__next__())   # 파이썬 3에서는 반복자로 생성이됨
@@ -95,4 +95,17 @@ for i in a:
 # 반올림
 print(round(12.0345, 2))
 
-# 정렬
+# 정렬 - iterable 받아서 정렬값 반환하고, key= 값으로 비교함수 전달가능, reverse 넣으면 역순 정렬
+l2 = [[2, 3], [4, 28], [3, 14], [20, 100]]
+def get_second(list):
+    return list[1]
+r = sorted(l2, key=get_second, reverse=True)
+print(r)
+
+# __dict__ 를 반환함. 왜 있냐? __dict__ 에 직접 쓰는거 막야야되는  객체 때문에, 특별한 args 없는 경우 locals() 와 같음
+print(vars(object))
+
+# 주어진 변수 합쳐서 튜플 iter 로 만들어줌
+z = zip('abc', [1,2,3], ['x', 'y'])
+x = [x for x in z]
+print(x)
