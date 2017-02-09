@@ -25,3 +25,4 @@ with engine.connect() as con:
     stmt3 = insert(data)
     print(stmt3)
     print(con.execute(stmt3, values_list).rowcount)
+
