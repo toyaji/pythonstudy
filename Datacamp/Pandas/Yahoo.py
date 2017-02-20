@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 # from ya
 
 start = datetime(2010, 1, 1)
-end = datetime(2017, 2, 14)
+end = datetime(2017, 2, 11)
 stock = pdr.DataReader("078930.KS", "yahoo", start, end)
 
 print(stock.info())
