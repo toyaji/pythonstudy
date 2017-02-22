@@ -69,5 +69,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="mydb" uuid="a0185b99-c690-44d1-bd62-736541e87650">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/chapter17_DatabaseApproach/mydb</jdbc-url>
+    </data-source>
   </component>
 </project>
