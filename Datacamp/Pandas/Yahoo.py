@@ -1,5 +1,4 @@
-import pandas_datareader as pdr
-import pandas as pd
+from pandas_datareader import data
 from pandas import DataFrame, Series
 from datetime import datetime
 from matplotlib import pyplot as plt
@@ -8,12 +7,15 @@ from matplotlib import pyplot as plt
 
 start = datetime(2010, 1, 1)
 end = datetime(2017, 2, 11)
-stock = pdr.DataReader("078930.KS", "yahoo", start, end)
+stock = data.DataReader("078930.KS", "yahoo", start, end)
+
+# 읽어서 csv 파일로 내리기
+df = DataFrame(stock)
+df.to_csv(r'C:\Users\user\PycharmProjects\yahoo.csv')
 
 print(stock.info())
 print(stock.head())
 
-df = DataFrame(stock)
 plt.plot(df)
 plt.show()
 df.plot(subplots=True)    # 여러개 하위 그래프로 보여줌
