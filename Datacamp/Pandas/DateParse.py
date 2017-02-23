@@ -21,7 +21,7 @@ time_series = pd.Series(df['Open'], index=dtime)
 print(time_series.head())
 
 # 타임 셋 판다스가 알아서 확인함  ?? 에러나는 이유 몰까...
-print(df1.loc['2010-10-11'])
+print(df1.loc['2010-Oct'])
 
 # 리인덱싱 하는법
 red = df.reindex(df1.index)
