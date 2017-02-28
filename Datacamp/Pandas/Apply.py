@@ -24,6 +24,7 @@ print(result.head())
 
 # for 문 없이도 판다스를 이용해서 데이터 프레임에 함수 적용할 수 있음
 def to_nonzero(x):
+    # todo define color
     return x + 4 # np.random.randint(1, 10)
 
 # 이게 랜덤이 각각 적용되는건 아니구나... 함수는 한번 돌리고 한번에 다 적용하는 거임...
