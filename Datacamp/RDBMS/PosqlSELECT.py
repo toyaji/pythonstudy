@@ -2,7 +2,6 @@ from sqlalchemy import create_engine, select, Table, MetaData
 
 # 현재 데이터는 데이터캠프 서버에서 가져오는거임
 engine = create_engine('postgresql+psycopg2://student:datacamp@postgresql.csrrinzqubik.us-east-1.rds.amazonaws.com:5432/census')
-
 meta = MetaData()
 
 # 현재 서버에서 퍼비션 부정된듯함
