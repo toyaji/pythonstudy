@@ -21,7 +21,7 @@ def object_tracking(cam=0):
         bw = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
         th3 = cv2.adaptiveThreshold(bw, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 71, 70)
 
-        cv2.imshow('frame', bw)
+        cv2.imshow('frame', res)
         # col_info(bw)
 
         k = cv2.waitKey(1) & 0xFF
@@ -37,5 +37,5 @@ def col_info(frame):
 
 
 if __name__ == '__main__':
-    vedio = expanduser(r'~\downloads\NEW heavy technology machine - Best agricultural farming- Pomegranate Harvest.mp4')
+    vedio = expanduser(r'~\downloads\strawberry.mp4')
     object_tracking(vedio)
