@@ -16,7 +16,3 @@ df['tip'].plot(ax=axes[1], kind='hist', normed=True, cumulative=True, bins=100, 
 
 plt.show()
 plt.close()
-
-import cv2
-
-from cv2
