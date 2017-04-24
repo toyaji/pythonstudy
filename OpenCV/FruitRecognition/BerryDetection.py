@@ -25,6 +25,7 @@ def find_biggest_contour(image):
 
     # 가장 큰 녀석만 따로 떼내기
     contour_sizes = [(cv2.contourArea(contour), contour) for contour in contours]
+    print(contour_sizes)
     biggest_contour = max(contour_sizes, key=lambda x: x[0])[1]
 
     # 제일 큰 놈만 콘투어 뱉어내기
@@ -37,7 +38,7 @@ def circle_contour(image, contour):
     # 바운딩하기 ellipse
     image_with_ellipse = image.copy()
     ellipse = cv2.fitEllipse(contour)
-    cv2.ellipse(image_with_ellipse, ellipse, green, 2, cv2.CV_)
+    cv2.ellipse(image_with_ellipse, ellipse, green, 2, cv2.LINE_AA)
     return image_with_ellipse
 
 
@@ -50,7 +51,7 @@ def find_strawberry(image):
     image = cv2.resize(image, None, fx=scale, fy=scale)
 
     # 이미지 cleaning - 색깔이 전반적으로 서서히 바뀌도록 문대는거임
-    image_blur = cv2.GaussianBlur(image, (7,7), 0)
+    image_blur = cv2.medianBlur(image, 7)  # cv2.GaussianBlur(image, (7,7), 0)
     image_blur_hsv = cv2.cvtColor(image_blur, cv2.COLOR_RGB2HSV)  # hsv 로 바꾸는 이유는? 좀 공부해야겠네...
 
     # 컬러 레인지로 필터 걸어서 잡아내기
@@ -92,10 +93,16 @@ def find_strawberry(image):
 
 
 if __name__ == '__main__':
-
+    """
     file = expanduser(r'~\pictures\strawberry.jpg')
     image = cv2.imread(file)
-    find_strawberry(image)
+    result = find_strawberry(image)
+
+    cv2.imshow('result', result)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
     """
 
     vedio = expanduser(r'~\downloads\strawberry.mp4')
@@ -109,4 +116,4 @@ if __name__ == '__main__':
         if k == 27: break
 
     cv2.destroyAllWindows()
-    """
+
