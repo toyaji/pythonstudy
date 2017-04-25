@@ -32,3 +32,24 @@ while True:
 
     frame = imutils.resize(frame, width=600)
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+    # 빨간색 마스크 만들기
+    mask1 = cv2.inRange(hsv, min_red, max_red)
+    mask2 = cv2.inRange(hsv, min_red2, max_red2)
+    mask = mask1 + mask2
+
+    # 마스크에 opening Morphology 로 노이즈 문데기
+    # mask = cv2.erode(mask, None, iterations=2)
+    # mask = cv2.dilate(mask, None, iterations=2)
+    kernel = np.ones((5,5), np.int8)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+
+    # contour 찾기
+    cnts = cv2.findContours(mask.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
+    center = None
+
+    if len(cnts) > 0:
+        c = max(cnts, key=cv2.contourArea)
+        ((x, y), radius) = cv2.minEnclosingCircle(c)
+        M = cv2.moments(c)
+        center = (int(M["m10"] / M["m00"]))
