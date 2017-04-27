@@ -49,7 +49,22 @@ while True:
     center = None
 
     if len(cnts) > 0:
+        # 면적 제일 큰 녀석으로 .. 딸기 적정 수준 확인하려면  요걸로 Contour 의 크기를 가지고 얼마 정도 수준 되는 놈만 따는 걸로 셋팅 할 수 있겠네....!!!
         c = max(cnts, key=cv2.contourArea)
         ((x, y), radius) = cv2.minEnclosingCircle(c)
         M = cv2.moments(c)
-        center = (int(M["m10"] / M["m00"]))
+        center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
+
+        if radius > 10:
+            cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
+            cv2.circle(frame, center, 5, (0, 0, 255), -1)
+
+    pts.appendleft(center)
+
+    cv2.imshow('Frame', frame)
+    key = cv2.waitKey(1) & 0xFFc
+    if key == ord('q'): break
+
+
+cv2.destroyAllWindows()
+camera.release()
