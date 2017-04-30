@@ -21,7 +21,8 @@ def overlay_mask(mask, image):
 
 def find_biggest_contour(image):
     image = image.copy()
-    _, contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    _, contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
 
     # 가장 큰 녀석만 따로 떼내기
     contour_sizes = [(cv2.contourArea(contour), contour) for contour in contours]
@@ -93,9 +94,10 @@ def find_strawberry(image):
 
 
 if __name__ == '__main__':
-    """
+
     file = expanduser(r'~\pictures\strawberry.jpg')
     image = cv2.imread(file)
+    print(image.__str__)
     result = find_strawberry(image)
 
     cv2.imshow('result', result)
@@ -103,9 +105,9 @@ if __name__ == '__main__':
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    """
 
-    vedio = expanduser(r'~\downloads\strawberry.mp4')
+
+    vedio = expanduser(r'~\downloads\videoplayback.mp4')
     cap = cv2.VideoCapture(vedio)
     while True:
         ret, frame = cap.read()
