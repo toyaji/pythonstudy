@@ -32,8 +32,16 @@ def morphology(file):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def makeKernel():
+    m1 = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+    m2 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5))
+    m3 = cv2.getStructuringElement(cv2.MORPH_CROSS, (5,5))
+
+    print(m1, m2, m3)
+
 
 if __name__ == '__main__':
     file = expanduser(r'~\pictures\kadisoka-free-font.jpg')
     morph(file)
     morphology(file)
+    makeKernel()
