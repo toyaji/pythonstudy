@@ -3,6 +3,7 @@ from os.path import expanduser
 import cv2
 import numpy as np
 
+
 def convex(image, th):
     img = cv2.imread(image, cv2.IMREAD_GRAYSCALE)
 
@@ -15,8 +16,11 @@ def convex(image, th):
     _, contours, _ = cv2.findContours(thr, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
     contour_sizes = [(cv2.contourArea(contour), contour) for contour in contours]
-    cnt = max(contour_sizes, key=lambda x: x[0])[1]
-    #cnt = contours[th]
+    #cnt = max(contour_sizes, key=lambda x: x[0])[1]
+
+    # 컨투어 소팅하는법... 진짜 힘들었다.. ㅠㅠ
+    cnt = sorted(contour_sizes, key=lambda x: x[0])[-2][1]
+    print(contour_sizes[-2][1])
 
 
     mmt = cv2.moments(cnt)
@@ -40,10 +44,23 @@ def convex(image, th):
     equivalent_diameter = 2*np.sqrt(korea_area/np.pi)
     korea_radius = int(equivalent_diameter/2)
 
+    # 극단점 찾기
+    lmost = tuple(cnt[cnt[:,:,0].argmin()][0])
+    rmost = tuple(cnt[cnt[:,:,0].argmax()][0])
+    tmost = tuple(cnt[cnt[:,:,1].argmin()][0])
+    bmost = tuple(cnt[cnt[:,:,1].argmax()][0])
+
+
     cv2.circle(img, (cx, cy), 3, (0,0,255), -1)
     cv2.circle(img, (cx, cy), korea_radius, (0,0,255), 2)
     cv2.rectangle(img, (x, y), (x+w, y+h), (0,255,255), 2)
     cv2.ellipse(img, ellipse, (50,50,50), 2)
+
+    # 극단점 표시
+    cv2.circle(img, lmost, 3, (0,124,234), -1)
+    cv2.circle(img, rmost, 3, (0,124,234), -1)
+    cv2.circle(img, tmost, 3, (0,124,234), -1)
+    cv2.circle(img, bmost, 3, (0,124,234), -1)
 
     cv2.imshow('Korea Features', img)
     cv2.waitKey(0)
