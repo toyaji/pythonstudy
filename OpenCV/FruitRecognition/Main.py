@@ -82,9 +82,15 @@ def findFruit(camera=1, width=600):
         key = cv2.waitKey(1) & 0xFFc
         if key == ord('q'): break
 
-        #yield distance
-        #nextFlag = (yield )
+        yield distance
+
+        nextFlag = (yield )
+
+
+        fcc = cv2.VideoWriter_fourcc(*'XVID')
+        out = cv2.VideoWriter("berrydetecting.avi", fcc, 20, (frame.shape[0], frame.shape[1]))
 
 
 if __name__ == '__main__':
-    findFruit(0)
+    f = findFruit(0)
+    print(f.__next__())
