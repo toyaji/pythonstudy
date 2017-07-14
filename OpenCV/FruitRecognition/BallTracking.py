@@ -21,7 +21,7 @@ max_red2 = np.array([100, 256, 256])
 pts = deque(maxlen=args['buffer'])
 
 if not args.get("video", False):
-    camera = cv2.VideoCapture(r'C:\Users\user\Downloads\strawberry.mp4')
+    camera = cv2.VideoCapture(r'C:\Users\paul\Downloads\strawberry.mp4')
 else:
     camera = cv2.VideoCapture(args["video"])
 
