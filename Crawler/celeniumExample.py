@@ -7,7 +7,6 @@ import re
 
 
 class KorailCrawling(object):
-
     def __init__(self, departure, arrival, start, end):
         self.departure = departure
         self.arrival = arrival
@@ -17,7 +16,8 @@ class KorailCrawling(object):
         self.chromeOptions = ChromeOptions()
 
     def __str__(self):
-        return 'CrawlerObject: from %s to %s, start from %s to %s' % (self.departure, self.arrival, self.start, self.end)
+        return 'CrawlerObject: from %s to %s, start from %s to %s' % \
+               (self.departure, self.arrival, self.start, self.end)
 
     def spying_on(self):
         table = self.get_timetable()
@@ -38,7 +38,8 @@ class KorailCrawling(object):
         :return: html <table> 를 통으로 반환합니다.
         """
 
-        driver = webdriver.Chrome(r'\Users\toyaji\PycharmProjects\chromedriver\chromedriver', chrome_options=self.chromeOptions)
+        driver = webdriver.Chrome(r'\Users\toyaji\PycharmProjects\chromedriver\chromedriver',
+                                  chrome_options=self.chromeOptions)
         driver.implicitly_wait(3)
 
         # 출도착지 설정
@@ -64,7 +65,7 @@ class KorailCrawling(object):
         # Form summit 제출하기
         driver.find_element_by_id('acr6').click()
         driver.find_element_by_class_name('btn_inq').click()
-    
+
         # table 결과물 가져오기
         try:
             table = driver.find_element_by_xpath('//*[@id="divResult"]/div[1]/table/tbody').get_attribute('innerHTML')
@@ -76,15 +77,18 @@ class KorailCrawling(object):
         driver.close()
         return table
 
-    def table_parsing(self, table):
+    @staticmethod
+    def table_parsing(table):
         """
         특정일자 조회해서 가져온 테이블 파싱하는 함수
+        :param table:
+        :return:
         :return: 50% 표가 있는 날만 출도착지랑 시간 정보 리스트로 반환함
         """
 
         soup = bs(table, 'html.parser')
         bts = soup.find_all('img', {'name': re.compile('btnRsv(\d+)_(\d+)')})
-    
+
         # 좌석이 있는 행만(tr) 찾아서 parent 쫓아가서 출도착 시간을 리스트로 모아줌
         possileTime = []
         for bt in bts:
